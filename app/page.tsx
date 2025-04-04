@@ -106,27 +106,34 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="relative"
             >
-              <div className="relative h-[400px] w-full">
-                <Image
-                  src="/eco/background.jpg?height=400&width=500"
-                  alt="Environmental Solutions"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+            <div className="relative h-[400px] w-full">
+  {/* Video Container with Rounded Corners */}
+  <div className="h-full w-full rounded-2xl overflow-hidden">
+    <video
+      src="/eco/eco3.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="auto"
+      className="object-cover h-full w-full"
+    />
+  </div>
 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8, duration: 0.5, type: "spring" }}
-                  className="absolute -bottom-6 -right-6 bg-primary text-white p-4 rounded-lg shadow-lg"
-                >
-                  <div className="flex items-center gap-2">
-                    <Leaf className="h-5 w-5" />
-                    <span className="font-medium">Eco-Friendly</span>
-                  </div>
-                </motion.div>
-              </div>
+  {/* Eco-Friendly Button Placed Outside the Overflow-Hidden Div */}
+  <motion.div
+    initial={{ opacity: 0, scale: 0 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ delay: 0.8, duration: 0.5, type: "spring" }}
+    className="absolute -bottom-6 -right-6 bg-primary text-white p-4 rounded-lg shadow-lg"
+  >
+    <div className="flex items-center gap-2">
+      <Leaf className="h-5 w-5" />
+      <span className="font-medium">Eco-Friendly</span>
+    </div>
+  </motion.div>
+</div>
+
             </motion.div>
           </div>
 
@@ -468,7 +475,7 @@ export default function Home() {
             >
               <div className="relative h-[400px] w-full">
                 <Image
-                  src="/eco/savetheplanet.png?height=400&width=400"
+                  src="/eco1/savetheplanet.png?height=400&width=400"
                   alt="Save the Planet"
                   fill
                   className="object-contain rounded-lg"
