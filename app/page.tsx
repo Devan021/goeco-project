@@ -475,7 +475,7 @@ export default function Home() {
             >
               <div className="relative h-[400px] w-full">
                 <Image
-                  src="/eco1/savetheplanet.png?height=400&width=400"
+                  src="/eco/savetheplanet.png?height=400&width=400"
                   alt="Save the Planet"
                   fill
                   className="object-contain rounded-lg"
