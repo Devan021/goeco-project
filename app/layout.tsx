@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "GoEco - Environmental Solutions",
   description: "Carbon emission identification and renewable energy solutions",
-    generator: 'v0.dev'
+
 }
 
 export default function RootLayout({
@@ -20,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" type="image/png" href="/eco/logo.png" />
+      </head>
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Header />
@@ -31,6 +34,3 @@ export default function RootLayout({
   )
 }
 
-
-
-import './globals.css'
