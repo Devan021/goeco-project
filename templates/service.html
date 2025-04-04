@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoEco - Renewable Energy Recommender</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/service.css') }}">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="GoEco Logo">
+                <span>GoEco</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('service') }}" class="active">Service</a></li>
+                    <li><a href="{{ url_for('work') }}">Work</a></li>
+                    <li><a href="{{ url_for('team') }}">Team</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section id="title" class="animate-fade-in">
+        <div class="container">
+            <h1><span>Renewable</span><br><span>Energy Source Recommender</span></h1>
+            <p>Find your optimal renewable energy solution based on your location and requirements</p>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="container">
+            <div class="form-container animate-slide-up">
+                <h2>Find Your Optimal Renewable Energy Solution</h2>
+                <form id="energyForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="city">City Name</label>
+                            <input
+                                type="text"
+                                placeholder="Enter City Name"
+                                class="form-control"
+                                id="city"
+                                name="city"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select class="form-control" id="state" name="state" required>
+                                <option value="">Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Ladakh">Ladakh</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="sunshine_hours">Sunshine Hours (0-24)</label>
+                            <input
+                                type="number"
+                                placeholder="Enter Sunshine Hours"
+                                class="form-control"
+                                id="sunshine_hours"
+                                name="sunshine_hours"
+                                min="0"
+                                max="24"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="power_requirement">Power Requirement (kW)</label>
+                            <input
+                                type="number"
+                                placeholder="Power Requirement"
+                                class="form-control"
+                                id="power_requirement"
+                                name="power_requirement"
+                                min="1"
+                                value="10"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="electricity_rate">Electricity Rate (₹/kWh)</label>
+                            <input
+                                type="number"
+                                placeholder="Electricity Rate"
+                                class="form-control"
+                                id="electricity_rate"
+                                name="electricity_rate"
+                                min="1"
+                                value="8"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-checks">
+                        <div class="form-check">
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="is_near_water"
+                                name="is_near_water"
+                            />
+                            <label class="form-check-label" for="is_near_water">Near Water Source</label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="is_geothermal_region"
+                                name="is_geothermal_region"
+                            />
+                            <label class="form-check-label" for="is_geothermal_region">In Geothermal Region</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Find Renewable Energy Sources</span>
+                        <span class="btn-icon"><i class="fas fa-search"></i></span>
+                    </button>
+                </form>
+
+                <div class="error-message"></div>
+                <div class="loading-indicator">
+                    <div class="spinner"></div>
+                    <p>Analyzing your location and requirements...</p>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div class="results-header">
+                    <h3>Current Weather Conditions</h3>
+                    <div class="location-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="location-text">--</span>
+                    </div>
+                </div>
+                
+                <div class="weather-info">
+                    <div class="weather-card">
+                        <i class="fas fa-thermometer-half"></i>
+                        <h4>Temperature</h4>
+                        <p class="temperature">--°C</p>
+                    </div>
+                    <div class="weather-card">
+                        <i class="fas fa-wind"></i>
+                        <h4>Wind Speed</h4>
+                        <p class="wind-speed">-- m/s</p>
+                    </div>
+                    <div class="weather-card">
+                        <i class="fas fa-cloud"></i>
+                        <h4>Cloud Cover</h4>
+                        <p class="cloud-cover">--%</p>
+                    </div>
+                    <div class="weather-card">
+                        <i class="fas fa-sun"></i>
+                        <h4>Condition</h4>
+                        <p class="condition">--</p>
+                    </div>
+                </div>
+
+                <div class="results-comparison">
+                    <h3>Energy Sources Comparison</h3>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                </div>
+
+                <h3>Recommended Energy Sources</h3>
+                <div class="energy-sources"></div>
+                
+                <div class="no-results">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>No optimal energy sources found for the given conditions.</p>
+                    <p>Try adjusting your parameters or selecting a different location.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="GoEco Logo">
+                    <span>GoEco</span>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('service') }}">Service</a></li>
+                        <li><a href="{{ url_for('work') }}">Work</a></li>
+                        <li><a href="{{ url_for('team') }}">Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> contact@goeco.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> IGDTUW, Kashmere Gate, Delhi, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GoEco. All rights reserved. Version {{ version }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/service.js') }}"></script>
+</body>
+</html>
+
